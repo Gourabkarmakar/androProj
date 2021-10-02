@@ -47,13 +47,13 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = DB.rawQuery("SELECT * FROM Userdetails WHERE domainname = ?", new String[]{domainname});
         if (cursor.getCount()>0){
 
-        long result = DB.update("Userdetails", contentValues,"domainname", new String[]{domainname});
-        if (result == -1){
-            return false;
-        }
-        else {
-            return  true;
-        }
+            long result = DB.update("Userdetails", contentValues,"domainname=?", new String[]{domainname});
+            if (result == -1){
+                return false;
+            }
+            else {
+                return  true;
+            }
         }else {
             return  false;
         }
@@ -65,7 +65,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = DB.rawQuery("SELECT * FROM Userdetails WHERE domainname = ?", new String[]{domainname});
         if (cursor.getCount()>0){
 
-            long result = DB.delete("Userdetails", "domainname", new String[]{domainname});
+            long result = DB.delete("Userdetails", "domainname=?", new String[]{domainname});
             if (result == -1){
                 return false;
             }

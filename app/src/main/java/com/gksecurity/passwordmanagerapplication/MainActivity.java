@@ -31,38 +31,32 @@ public class MainActivity extends AppCompatActivity {
 
         DB = new DBHelper(this);
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String domiannameTxt = domainname.getText().toString();
-                String usernameTxt = username.getText().toString();
-                String passwordTxt = password.getText().toString();
+        save.setOnClickListener(v -> {
+            String domiannameTxt = domainname.getText().toString();
+            String usernameTxt = username.getText().toString();
+            String passwordTxt = password.getText().toString();
 
-                Boolean checkinsertData = DB.insertdata(domiannameTxt, usernameTxt, passwordTxt);
-                if (checkinsertData == true){
-                    Toast.makeText(MainActivity.this, "New UserName Password Save", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(MainActivity.this, "New Entry Not Added", Toast.LENGTH_SHORT).show();
-                }
+            Boolean checkinsertData = DB.insertdata(domiannameTxt, usernameTxt, passwordTxt);
+            if (checkinsertData){
+                Toast.makeText(MainActivity.this, "New UserName Password Save", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(MainActivity.this, "New Entry Not Added", Toast.LENGTH_SHORT).show();
             }
         });
 
 
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String domiannameTxt = domainname.getText().toString();
-                String usernameTxt = username.getText().toString();
-                String passwordTxt = password.getText().toString();
+        update.setOnClickListener(v -> {
+            String domiannameTxt = domainname.getText().toString();
+            String usernameTxt = username.getText().toString();
+            String passwordTxt = password.getText().toString();
 
-                Boolean checkupdateData = DB.updatedata(domiannameTxt, usernameTxt, passwordTxt);
-                if (checkupdateData == true){
-                    Toast.makeText(MainActivity.this, "Entry Updated", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(MainActivity.this, "New Entry Not Update", Toast.LENGTH_SHORT).show();
-                }
+            Boolean checkupdateData = DB.updatedata(domiannameTxt, usernameTxt, passwordTxt);
+            if (checkupdateData){
+                Toast.makeText(MainActivity.this, "Entry Updated", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(MainActivity.this, "New Entry Not Update", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -73,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 Boolean checkdeleteData = DB.deletedata(domiannameTxt);
-                if (checkdeleteData == true){
+                if (checkdeleteData){
                     Toast.makeText(MainActivity.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -95,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 while (res.moveToNext()){
                     buffer.append("Domain Name : "+res.getString(0)+"\n");
                     buffer.append("Username : "+res.getString(1)+"\n");
-                    buffer.append("Password : "+res.getString(2)+"\n");
+                    buffer.append("Password : "+res.getString(2)+"\n\n");
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
